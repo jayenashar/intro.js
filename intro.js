@@ -457,7 +457,7 @@
         currentTooltipPosition = _determineAutoPosition.call(this, targetElement, tooltipLayer, currentTooltipPosition)
       }
     }
-    targetOffset  = _getOffset(targetElement);
+    targetOffset  = _getOffset(document.querySelector('.introjs-tooltipReferenceLayer'));
     tooltipOffset = _getOffset(tooltipLayer);
     windowSize    = _getWinSize();
     switch (currentTooltipPosition) {
@@ -513,7 +513,7 @@
 
         var tooltipLayerStyleRight = 0;
         _checkLeft(targetOffset, tooltipLayerStyleRight, tooltipOffset, tooltipLayer);
-        tooltipLayer.style.top    = (targetOffset.height +  20) + 'px';
+        tooltipLayer.style.top    = (targetOffset.height +  10) + 'px';
         break;
 
       case 'bottom-middle-aligned':
@@ -524,7 +524,7 @@
           tooltipLayer.style.right = null;
           _checkRight(targetOffset, tooltipLayerStyleLeftRight, tooltipOffset, windowSize, tooltipLayer);
         }
-        tooltipLayer.style.top = (targetOffset.height + 20) + 'px';
+        tooltipLayer.style.top = (targetOffset.height + 10) + 'px';
         break;
 
       case 'bottom-left-aligned':
@@ -536,7 +536,7 @@
 
         var tooltipLayerStyleLeft = 0;
         _checkRight(targetOffset, tooltipLayerStyleLeft, tooltipOffset, windowSize, tooltipLayer);
-        tooltipLayer.style.top    = (targetOffset.height +  20) + 'px';
+        tooltipLayer.style.top    = (targetOffset.height +  10) + 'px';
         break;
     }
   }
