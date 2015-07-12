@@ -457,7 +457,7 @@
         currentTooltipPosition = _determineAutoPosition.call(this, targetElement, tooltipLayer, currentTooltipPosition)
       }
     }
-    targetOffset  = _getOffset(document.querySelector('.introjs-tooltipReferenceLayer'));
+    targetOffset  = _getOffsetSimple(document.querySelector('.introjs-tooltipReferenceLayer'));
     tooltipOffset = _getOffset(tooltipLayer);
     windowSize    = _getWinSize();
     switch (currentTooltipPosition) {
@@ -671,8 +671,8 @@
       //set new position to helper layer
       helperLayer.setAttribute('style', 'width: ' + (elementPosition.width  + widthHeightPadding)  + 'px; ' +
                                         'height:' + (elementPosition.height + widthHeightPadding)  + 'px; ' +
-                                        'top:'    + (elementPosition.top    - 5)   + 'px;' +
-                                        'left: '  + (elementPosition.left   - 5)   + 'px;');
+                                        'top:'    + (elementPosition.top    - widthHeightPadding / 2)   + 'px;' +
+                                        'left: '  + (elementPosition.left   - widthHeightPadding / 2)   + 'px;');
 
     }
   }
@@ -1155,6 +1155,22 @@
     //set left
     elementPosition.left = _x;
 
+    return elementPosition;
+  }
+
+  /**
+   * Get an absolute/fixed element position on the page
+   *
+   * @api private
+   * @method _getOffsetSimple
+   * @param {Object} element
+   * @returns Element's position info
+   */
+  function _getOffsetSimple(element) {
+    var elementPosition = {};
+    ['top', 'left', 'width', 'height'].forEach(function (prop) {
+      elementPosition[prop] = Number(String(element.style[prop]).replace(/px$/i, ''));
+    });
     return elementPosition;
   }
 
